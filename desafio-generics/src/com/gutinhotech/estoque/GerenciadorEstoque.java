@@ -1,10 +1,10 @@
 package com.gutinhotech.estoque;
 
-public class GerenciadorEstoque {
+public class GerenciadorEstoque<T extends Estocavel> {
 
     private int quantidadeTotal;
 
-    public void adicionar(Estocavel estocavel) {
+    public void adicionar(T estocavel) {
         quantidadeTotal += estocavel.getQuantidadeEstoque();
     }
 
