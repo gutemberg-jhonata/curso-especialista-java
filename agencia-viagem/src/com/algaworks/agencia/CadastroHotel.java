@@ -1,5 +1,6 @@
 package com.algaworks.agencia;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,6 +21,14 @@ public class CadastroHotel {
 
     public List<Hotel> obterTodos() {
         return hoteis;
+    }
+    
+    public Hotel[] obterTodosComoArray() {
+        return hoteis.toArray(new Hotel[0]);
+    }
+
+    public void ordenar() {
+        Collections.sort(hoteis);
     }
 
     public void removerPorCidade(String cidade) {

@@ -16,6 +16,9 @@ public class Principal {
         //cadastro.removerPorCidade("Fortim/CE");
         //cadastro.remover(new Hotel("Vila Selvagem", "Fortim/CE", 0));
         //cadastro.removerTodos();
+        //Hotel[] hoteis = cadastro.obterTodosComoArray();
+        //System.out.println(Arrays.toString(hoteis));
+        cadastro.ordenar();
 
         List<Hotel> hoteis = cadastro.obterTodos();
         imprimirHoteis(hoteis);

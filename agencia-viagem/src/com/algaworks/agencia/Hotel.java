@@ -2,7 +2,7 @@ package com.algaworks.agencia;
 
 import java.util.Objects;
 
-public class Hotel {
+public class Hotel implements Comparable<Hotel> {
 
     private String nome;
     private String cidade;
@@ -57,7 +57,6 @@ public class Hotel {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
         return result;
     }
 
@@ -75,12 +74,19 @@ public class Hotel {
                 return false;
         } else if (!nome.equals(other.nome))
             return false;
-        if (cidade == null) {
-            if (other.cidade != null)
-                return false;
-        } else if (!cidade.equals(other.cidade))
-            return false;
         return true;
+    }
+
+    @Override
+    public int compareTo(Hotel o) {
+        return getNome().compareTo(o.getNome());
+        //return Double.compare(this.getPrecoDiaria(), o.getPrecoDiaria());
+        /*if (this.getPrecoDiaria() < o.getPrecoDiaria()) {
+            return -1;
+        } else if (this.getPrecoDiaria() > o.getPrecoDiaria()) {
+            return 1;
+        }
+        return 0;*/
     }
 
 }
