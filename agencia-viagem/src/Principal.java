@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 
 import com.algaworks.agencia.CadastroHotel;
 import com.algaworks.agencia.Hotel;
@@ -17,11 +17,11 @@ public class Principal {
         //cadastro.remover(new Hotel("Vila Selvagem", "Fortim/CE", 0));
         //cadastro.removerTodos();
 
-        ArrayList<Hotel> hoteis = cadastro.obterTodos();
+        List<Hotel> hoteis = cadastro.obterTodos();
         imprimirHoteis(hoteis);
     }
 
-    private static void imprimirHoteis(ArrayList<Hotel> hoteis) {
+    private static void imprimirHoteis(List<Hotel> hoteis) {
         for (Hotel hotel: hoteis) {
             System.out.printf(
                 "%s (%s) -> %.2f%n", 

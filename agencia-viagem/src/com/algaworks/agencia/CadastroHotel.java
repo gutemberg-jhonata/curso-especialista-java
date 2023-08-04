@@ -1,11 +1,12 @@
 package com.algaworks.agencia;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class CadastroHotel {
 
-    private final ArrayList<Hotel> hoteis = new ArrayList<>();
+    private final List<Hotel> hoteis = new LinkedList<>();
 
     public void adicionar(String nome, String cidade, double precoDiaria) {
         Hotel hotel = new Hotel(nome, cidade, precoDiaria);
@@ -17,7 +18,7 @@ public class CadastroHotel {
         hoteis.add(hotel);
     }
 
-    public ArrayList<Hotel> obterTodos() {
+    public List<Hotel> obterTodos() {
         return hoteis;
     }
 
