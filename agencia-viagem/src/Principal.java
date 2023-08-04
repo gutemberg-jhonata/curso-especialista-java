@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.ListIterator;
 
 import com.algaworks.agencia.CadastroHotel;
 import com.algaworks.agencia.Hotel;
@@ -14,7 +15,7 @@ public class Principal {
         cadastro.adicionar("Tivoli Ecoresort", "Praia do Forte/BA", 2000);
         cadastro.adicionar("Mercure", "Uberlândia/MG", 400);
 
-        cadastro.removerPorCidade("Fortim/CE");
+        //cadastro.removerPorCidade("Fortim/CE");
         //cadastro.remover(new Hotel("Vila Selvagem", "Fortim/CE", 0));
         //cadastro.removerTodos();
 
@@ -23,9 +24,9 @@ public class Principal {
     }
 
     private static void imprimirHoteis(ArrayList<Hotel> hoteis) {
-        Iterator<Hotel> hotelIterator = hoteis.iterator();
-        while(hotelIterator.hasNext()) {
-            Hotel hotel = hotelIterator.next();
+        ListIterator<Hotel> hotelIterator = hoteis.listIterator(hoteis.size());
+        while(hotelIterator.hasPrevious()) {
+            Hotel hotel = hotelIterator.previous();
             System.out.printf(
                 "%s (%s) -> %.2f%n", 
                 hotel.getNome(), 
