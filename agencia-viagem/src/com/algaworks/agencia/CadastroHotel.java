@@ -2,8 +2,6 @@ package com.algaworks.agencia;
 
 import java.util.ArrayList;
 
-import com.algaworks.HotelJaExistenteException;
-
 public class CadastroHotel {
 
     private final ArrayList<Hotel> hoteis = new ArrayList<>();
