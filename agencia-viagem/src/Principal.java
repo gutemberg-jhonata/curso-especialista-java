@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.algaworks.agencia.CadastroHotel;
 import com.algaworks.agencia.Hotel;
@@ -13,17 +14,18 @@ public class Principal {
         cadastro.adicionar("Tivoli Ecoresort", "Praia do Forte/BA", 2000);
         cadastro.adicionar("Mercure", "Uberlândia/MG", 400);
 
-        //cadastro.removerPorCidade("Fortim/CE");
+        cadastro.removerPorCidade("Fortim/CE");
         //cadastro.remover(new Hotel("Vila Selvagem", "Fortim/CE", 0));
-        cadastro.removerTodos();
+        //cadastro.removerTodos();
 
         ArrayList<Hotel> hoteis = cadastro.obterTodos();
         imprimirHoteis(hoteis);
     }
 
     private static void imprimirHoteis(ArrayList<Hotel> hoteis) {
-        for (int i = 0; i < hoteis.size(); i++) {
-            Hotel hotel = hoteis.get(i);
+        Iterator<Hotel> hotelIterator = hoteis.iterator();
+        while(hotelIterator.hasNext()) {
+            Hotel hotel = hotelIterator.next();
             System.out.printf(
                 "%s (%s) -> %.2f%n", 
                 hotel.getNome(), 
@@ -31,6 +33,16 @@ public class Principal {
                 hotel.getPrecoDiaria()
             );
         }
+
+        /*for (int i = 0; i < hoteis.size(); i++) {
+            Hotel hotel = hoteis.get(i);
+            System.out.printf(
+                "%s (%s) -> %.2f%n", 
+                hotel.getNome(), 
+                hotel.getCidade(), 
+                hotel.getPrecoDiaria()
+            );
+        }*/
     }
 
 }

@@ -1,6 +1,7 @@
 package com.algaworks.agencia;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CadastroHotel {
 
@@ -21,7 +22,16 @@ public class CadastroHotel {
     }
 
     public void removerPorCidade(String cidade) {
-        ArrayList<Hotel> hoteisParaRemocao = new ArrayList<>();
+        Iterator<Hotel> hotelIterator = hoteis.iterator();
+        while(hotelIterator.hasNext()) {
+            Hotel hotel = hotelIterator.next();
+            if (hotel.getCidade().equals(cidade)) {
+                hotelIterator.remove();
+                //hoteis.remove(hotel);
+            }
+        }
+
+        /*ArrayList<Hotel> hoteisParaRemocao = new ArrayList<>();
 
         for (int i = 0; i < hoteis.size(); i++) {
             Hotel hotel = hoteis.get(i);
@@ -32,7 +42,7 @@ public class CadastroHotel {
             }
         }
 
-        hoteis.removeAll(hoteisParaRemocao);
+        hoteis.removeAll(hoteisParaRemocao);*/
     }
 
     public void remover(Hotel hotel) {
