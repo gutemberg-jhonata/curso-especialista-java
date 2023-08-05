@@ -27,8 +27,15 @@ public class CadastroPacoteViagem {
     }
 
     public void removerPorDescricao(String descricao) {
-        // TODO iterar nos pacotes com Iterator e remover aqueles com descrição informada,
-        //  lançando exceção se nenhum pacote foi removido
+        Iterator<PacoteViagem> iterator = pacotesViagem.iterator();
+        while (iterator.hasNext()) {
+            PacoteViagem pacoteViagem = iterator.next();
+            if (pacoteViagem.getDescricao().equals(descricao)) {
+                iterator.remove();
+                return;
+            }
+        }
+        throw new PacoteViagemNaoEncontradoException("Pacote de viagem não encontrado para remoção.");
     }
 
     public PacoteViagem buscarPorDescricao(String descricao) {
