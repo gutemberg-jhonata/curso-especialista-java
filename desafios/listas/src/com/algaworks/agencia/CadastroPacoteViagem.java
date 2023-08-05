@@ -4,11 +4,14 @@ import java.util.*;
 
 public class CadastroPacoteViagem {
 
-    // TODO declarar lista de pacotes de viagem aqui
+    private final List<PacoteViagem> pacotesViagem = new ArrayList<>();
 
     public void adicionar(String descricao, double precoDiaria) {
-        // TODO adicionar pacote na lista, validando antes se
-        //  já existe usando contains (lançar exceção)
+        PacoteViagem pacoteViagem = new PacoteViagem(descricao, precoDiaria);
+        if (pacotesViagem.contains(pacoteViagem)) {
+            throw new PacoteViagemJaExistenteException("Este pacote de viagem já foi adicionado.");
+        }
+        pacotesViagem.add(pacoteViagem);
     }
 
     public List<PacoteViagem> obterTodos() {
