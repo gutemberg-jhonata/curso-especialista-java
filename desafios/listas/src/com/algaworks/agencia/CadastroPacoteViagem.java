@@ -19,7 +19,7 @@ public class CadastroPacoteViagem {
     }
 
     public void ordenar() {
-        // TODO ordenar pacotes pela ordem natural
+        pacotesViagem.sort(Comparator.naturalOrder());;
     }
 
     public void ordenarPorPrecoDecrescente() {

@@ -12,7 +12,7 @@ public class Principal {
         cadastro.adicionar("Natal Luz em Gramado (5 noites)", 8_500);
 //        cadastro.removerPorDescricao("Disney (7 noites)");
 
-//        cadastro.ordenar();
+        cadastro.ordenar();
 //        cadastro.ordenarPorPrecoDecrescente();
 
 //        PacoteViagem pacoteEncontrado = cadastro.buscarPorDescricao("Disney (7 noites)");
