@@ -15,8 +15,7 @@ public class CadastroPacoteViagem {
     }
 
     public List<PacoteViagem> obterTodos() {
-        // TODO retornar lista de pacotes
-        return null;
+        return pacotesViagem;
     }
 
     public void ordenar() {
