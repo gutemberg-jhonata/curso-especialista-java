@@ -18,7 +18,7 @@ public class Principal {
 //        PacoteViagem pacoteEncontrado = cadastro.buscarPorDescricao("Disney (7 noites)");
 //        System.out.println(pacoteEncontrado);
 
-//        imprimirPacotes(cadastro.obterTodos());
+        imprimirPacotes(cadastro.obterTodos());
     }
 
     private static void imprimirPacotes(List<PacoteViagem> pacotes) {

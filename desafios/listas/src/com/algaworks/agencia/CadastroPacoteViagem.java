@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CadastroPacoteViagem {
 
-    private final List<PacoteViagem> pacotesViagem = new ArrayList<>();
+    private final List<PacoteViagem> pacotesViagem = new LinkedList<>();
 
     public void adicionar(String descricao, double precoDiaria) {
         PacoteViagem pacoteViagem = new PacoteViagem(descricao, precoDiaria);
