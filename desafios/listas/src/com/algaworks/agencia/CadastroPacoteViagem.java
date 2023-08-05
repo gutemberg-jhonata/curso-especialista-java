@@ -23,7 +23,17 @@ public class CadastroPacoteViagem {
     }
 
     public void ordenarPorPrecoDecrescente() {
-        // TODO ordenar pacotes pelo preço (decrescente)
+        Comparator<PacoteViagem> precoPacoteViagemComparator = (o1, o2) -> 
+            Double.compare(
+                o1.getPrecoPorPessoa(), 
+                o2.getPrecoPorPessoa()
+            );
+
+        pacotesViagem.sort(
+            precoPacoteViagemComparator
+                .reversed()
+                .thenComparing(Comparator.naturalOrder())
+        );
     }
 
     public void removerPorDescricao(String descricao) {
