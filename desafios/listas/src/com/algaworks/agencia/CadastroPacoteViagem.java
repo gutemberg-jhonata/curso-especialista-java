@@ -49,9 +49,12 @@ public class CadastroPacoteViagem {
     }
 
     public PacoteViagem buscarPorDescricao(String descricao) {
-        // TODO iterar pacotes com enhanced for, localizar e retornar
-        //  pacote com descrição informada (ou lançar exceção se não encontrar)
-        return null;
+        for (PacoteViagem pacoteViagem: pacotesViagem) {
+            if (pacoteViagem.getDescricao().equals(descricao)) {
+                return pacoteViagem;
+            }
+        }
+        throw new PacoteViagemNaoEncontradoException("Pacote de viagem não encontrado.");
     }
 
 }
