@@ -1,6 +1,7 @@
 package com.algaworks.agencia;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,6 +30,13 @@ public class CadastroHotel {
 
     public void ordenar() {
         Collections.sort(hoteis);
+    }
+
+    public void ordenarPorPreco() {
+        //Collections.sort(hoteis, new PrecoHotelComparator());
+        hoteis.sort(new PrecoHotelComparator()
+            .reversed()
+            .thenComparing(Comparator.naturalOrder()));
     }
 
     public void removerPorCidade(String cidade) {

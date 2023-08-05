@@ -18,7 +18,7 @@ public class Principal {
         //cadastro.removerTodos();
         //Hotel[] hoteis = cadastro.obterTodosComoArray();
         //System.out.println(Arrays.toString(hoteis));
-        cadastro.ordenar();
+        cadastro.ordenarPorPreco();
 
         List<Hotel> hoteis = cadastro.obterTodos();
         imprimirHoteis(hoteis);
