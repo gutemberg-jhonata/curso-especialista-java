@@ -3,18 +3,23 @@ import com.algaworks.estoque.Fabricante;
 import com.algaworks.estoque.Produto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.function.IntBinaryOperator;
 import java.util.function.ToIntFunction;
 import java.util.stream.Stream;
+
+import javax.management.RuntimeErrorException;
 
 public class Principal {
 
     public static void main(String[] args) {
         var cadastroProduto = new CadastroProduto();
-        List<Produto> produtos = cadastroProduto.obterTodos();
+        //List<Produto> produtos = cadastroProduto.obterTodos();
+        List<Produto> produtos = new ArrayList<>();
 
 //        for (Produto produto : produtos) {
 //            produto.ativar();
@@ -77,6 +82,17 @@ public class Principal {
             //.reduce(0, Integer::min);
 
         System.out.println(totalEstoque);*/
+
+        OptionalInt maiorQuantidadeOptional = produtos.stream()
+            .filter(Produto::temEstoque)
+            .mapToInt(Produto::getQuantidade)
+            .reduce(Integer::max);
+
+        int maiorQuantidade = maiorQuantidadeOptional.orElseThrow(
+            () -> new RuntimeException("Quantidade não encontrada.")
+        );
+
+        System.out.println(maiorQuantidade);
 
         /*BigDecimal valorEmEstoque = produtos.stream()
             .map(produto -> produto.getPreco()
