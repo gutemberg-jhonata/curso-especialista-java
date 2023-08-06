@@ -1,4 +1,5 @@
 import com.algaworks.estoque.CadastroProduto;
+import com.algaworks.estoque.Fabricante;
 import com.algaworks.estoque.Produto;
 
 import java.util.Comparator;
@@ -33,7 +34,7 @@ public class Principal {
             .noneMatch(Produto::temEstoque);
         System.out.println(nenhumProdutoPossuiEstoque);*/
 
-        produtos.stream()
+        /*produtos.stream()
             .filter(Produto::temEstoque)
             .sorted(Comparator.comparingInt(Produto::getQuantidade))
             .forEach(produto -> 
@@ -42,7 +43,13 @@ public class Principal {
                     produto.getNome(), 
                     produto.getQuantidade()
                 )
-            );
+            );*/
+        
+        produtos.stream()
+            .filter(Produto::temEstoque)
+            .map(Produto::getFabricante)
+            .distinct()
+            .forEach(System.out::println);
 
         /*produtos.stream()
             .peek(produto -> produto.setNome(produto.getNome().toUpperCase()))
