@@ -1,8 +1,10 @@
 import com.algaworks.estoque.CadastroProduto;
 import com.algaworks.estoque.Produto;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.ToIntFunction;
 import java.util.stream.Stream;
 
 public class Principal {
@@ -26,10 +28,21 @@ public class Principal {
             .allMatch(Produto::temEstoque);
         System.out.println(todosProdutosPossuemEstoque);*/
 
-        boolean nenhumProdutoPossuiEstoque = produtos.stream()
+        /*boolean nenhumProdutoPossuiEstoque = produtos.stream()
             .peek(System.out::println)
             .noneMatch(Produto::temEstoque);
-        System.out.println(nenhumProdutoPossuiEstoque);
+        System.out.println(nenhumProdutoPossuiEstoque);*/
+
+        produtos.stream()
+            .filter(Produto::temEstoque)
+            .sorted(Comparator.comparingInt(Produto::getQuantidade))
+            .forEach(produto -> 
+                System.out.printf(
+                    "%s = %d unidades%n", 
+                    produto.getNome(), 
+                    produto.getQuantidade()
+                )
+            );
 
         /*produtos.stream()
             .peek(produto -> produto.setNome(produto.getNome().toUpperCase()))
