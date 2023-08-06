@@ -1,4 +1,5 @@
 import com.algaworks.estoque.CadastroProduto;
+import com.algaworks.estoque.Categoria;
 import com.algaworks.estoque.Fabricante;
 import com.algaworks.estoque.Produto;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.function.IntBinaryOperator;
 import java.util.function.ToIntFunction;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.management.RuntimeErrorException;
@@ -64,6 +66,23 @@ public class Principal {
             .distinct()
             .forEach(System.out::println);*/
 
+        /*List<Categoria> categorias = produtos.stream()
+            .filter(Produto::temEstoque)
+            .flatMap(produto -> produto.getCategorias().stream())
+            .distinct()
+            .collect(() -> new ArrayList<>(), 
+                (lista, elemento) -> lista.add(elemento),
+                (lista1, lista2) -> lista1.addAll(lista2));*/
+
+        List<Categoria> categorias = produtos.stream()
+            .filter(Produto::temEstoque)
+            .flatMap(produto -> produto.getCategorias().stream())
+            .distinct()
+            .collect(Collectors.toCollection(ArrayList::new));
+            //.collect(Collectors.toList());
+            //.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+
+        System.out.println(categorias);
         /*IntBinaryOperator operacaoSoma = (subTotal, valor) -> {
             System.out.println(subTotal + " + " + valor);
             return subTotal + valor;
@@ -92,11 +111,11 @@ public class Principal {
 
         System.out.println(mediaEstoque);*/
 
-        long totalProdutosComEstoque = produtos.stream()
+        /*long totalProdutosComEstoque = produtos.stream()
             .filter(Produto::temEstoque)
             .count();
 
-        System.out.println(totalProdutosComEstoque);
+        System.out.println(totalProdutosComEstoque);*/
 
         /*OptionalInt maiorQuantidadeOptional = produtos.stream()
             .filter(Produto::temEstoque)
