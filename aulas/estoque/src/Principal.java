@@ -99,11 +99,16 @@ public class Principal {
         
         System.out.println(produtosPorFabricante);*/
 
-        Map<String, Integer> estoquePorFabricante = produtos.stream()
+        /*Map<String, Integer> estoquePorFabricante = produtos.stream()
             .filter(Produto::temEstoque)
             .collect(Collectors.groupingBy(
                 produto -> produto.getFabricante().nome(),
                 Collectors.summingInt(Produto::getQuantidade)));
+        
+        System.out.println(estoquePorFabricante);*/
+
+        Map<Boolean, List<Produto>> estoquePorFabricante = produtos.stream()
+            .collect(Collectors.partitioningBy(Produto::temEstoque));
         
         System.out.println(estoquePorFabricante);
 
