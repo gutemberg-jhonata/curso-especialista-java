@@ -78,7 +78,9 @@ public class Principal {
             .filter(Produto::temEstoque)
             .flatMap(produto -> produto.getCategorias().stream())
             .distinct()
-            .collect(Collectors.toCollection(ArrayList::new));
+            .toList(); // nao modificavel
+            //.collect(Collectors.toUnmodifiableList());
+            //.collect(Collectors.toCollection(ArrayList::new));
             //.collect(Collectors.toList());
             //.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 
