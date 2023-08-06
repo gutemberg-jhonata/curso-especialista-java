@@ -5,6 +5,7 @@ import com.algaworks.estoque.Produto;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.IntBinaryOperator;
 import java.util.function.ToIntFunction;
 import java.util.stream.Stream;
 
@@ -51,11 +52,30 @@ public class Principal {
             .distinct()
             .forEach(System.out::println);*/
         
-        produtos.stream()
+        /*produtos.stream()
             .filter(Produto::temEstoque)
             .flatMap(produto -> produto.getCategorias().stream())
             .distinct()
-            .forEach(System.out::println);
+            .forEach(System.out::println);*/
+
+        /*IntBinaryOperator operacaoSoma = (subTotal, valor) -> {
+            System.out.println(subTotal + " + " + valor);
+            return subTotal + valor;
+        };
+
+        produtos.stream()
+            .filter(Produto::temEstoque)
+            .mapToInt(Produto::getQuantidade)
+            .reduce(0, operacaoSoma);*/
+
+        int totalEstoque = produtos.stream()
+            .filter(Produto::temEstoque)
+            .mapToInt(Produto::getQuantidade)
+            .reduce(0, Integer::sum);
+            //.reduce(0, Integer::max);
+            //.reduce(0, Integer::min);
+
+        System.out.println(totalEstoque);
 
         /*produtos.stream()
             .peek(produto -> produto.setNome(produto.getNome().toUpperCase()))
