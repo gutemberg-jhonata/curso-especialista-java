@@ -18,8 +18,8 @@ public class Principal {
 
     public static void main(String[] args) {
         var cadastroProduto = new CadastroProduto();
-        //List<Produto> produtos = cadastroProduto.obterTodos();
-        List<Produto> produtos = new ArrayList<>();
+        List<Produto> produtos = cadastroProduto.obterTodos();
+        //List<Produto> produtos = new ArrayList<>();
 
 //        for (Produto produto : produtos) {
 //            produto.ativar();
@@ -77,13 +77,28 @@ public class Principal {
         /*int totalEstoque = produtos.stream()
             .filter(Produto::temEstoque)
             .mapToInt(Produto::getQuantidade)
-            .reduce(0, Integer::sum);
+            .sum();
+            //.reduce(0, Integer::sum);
             //.reduce(0, Integer::max);
             //.reduce(0, Integer::min);
 
         System.out.println(totalEstoque);*/
 
-        OptionalInt maiorQuantidadeOptional = produtos.stream()
+        /*double mediaEstoque = produtos.stream()
+            .mapToInt(Produto::getQuantidade)
+            .average()
+            .orElseThrow(
+                () -> new RuntimeException("Não há produtos para cálcular a média"));
+
+        System.out.println(mediaEstoque);*/
+
+        long totalProdutosComEstoque = produtos.stream()
+            .filter(Produto::temEstoque)
+            .count();
+
+        System.out.println(totalProdutosComEstoque);
+
+        /*OptionalInt maiorQuantidadeOptional = produtos.stream()
             .filter(Produto::temEstoque)
             .mapToInt(Produto::getQuantidade)
             .reduce(Integer::max);
@@ -92,7 +107,7 @@ public class Principal {
             () -> new RuntimeException("Quantidade não encontrada.")
         );
 
-        System.out.println(maiorQuantidade);
+        System.out.println(maiorQuantidade);*/
 
         /*BigDecimal valorEmEstoque = produtos.stream()
             .map(produto -> produto.getPreco()
