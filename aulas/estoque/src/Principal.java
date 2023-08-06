@@ -45,9 +45,15 @@ public class Principal {
                 )
             );*/
         
-        produtos.stream()
+        /*produtos.stream()
             .filter(Produto::temEstoque)
             .map(Produto::getFabricante)
+            .distinct()
+            .forEach(System.out::println);*/
+        
+        produtos.stream()
+            .filter(Produto::temEstoque)
+            .flatMap(produto -> produto.getCategorias().stream())
             .distinct()
             .forEach(System.out::println);
 
