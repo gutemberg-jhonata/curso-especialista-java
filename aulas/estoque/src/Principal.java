@@ -2,6 +2,7 @@ import com.algaworks.estoque.CadastroProduto;
 import com.algaworks.estoque.Fabricante;
 import com.algaworks.estoque.Produto;
 
+import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -68,14 +69,26 @@ public class Principal {
             .mapToInt(Produto::getQuantidade)
             .reduce(0, operacaoSoma);*/
 
-        int totalEstoque = produtos.stream()
+        /*int totalEstoque = produtos.stream()
             .filter(Produto::temEstoque)
             .mapToInt(Produto::getQuantidade)
             .reduce(0, Integer::sum);
             //.reduce(0, Integer::max);
             //.reduce(0, Integer::min);
 
-        System.out.println(totalEstoque);
+        System.out.println(totalEstoque);*/
+
+        /*BigDecimal valorEmEstoque = produtos.stream()
+            .map(produto -> produto.getPreco()
+                .multiply(new BigDecimal(produto.getQuantidade())))
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal valorEmEstoque2 = produtos.stream()
+            .reduce(BigDecimal.ZERO, (subTotal, produto) -> {
+                BigDecimal valorEstoqueProduto = produto.getPreco()
+                    .multiply(new BigDecimal(produto.getQuantidade()));
+                return subTotal.add(valorEstoqueProduto);
+            } , BigDecimal::add);*/
 
         /*produtos.stream()
             .peek(produto -> produto.setNome(produto.getNome().toUpperCase()))
