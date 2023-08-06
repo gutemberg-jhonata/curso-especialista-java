@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.function.IntBinaryOperator;
@@ -74,7 +75,7 @@ public class Principal {
                 (lista, elemento) -> lista.add(elemento),
                 (lista1, lista2) -> lista1.addAll(lista2));*/
 
-        List<Categoria> categorias = produtos.stream()
+        /*List<Categoria> categorias = produtos.stream()
             .filter(Produto::temEstoque)
             .flatMap(produto -> produto.getCategorias().stream())
             .distinct()
@@ -84,7 +85,28 @@ public class Principal {
             //.collect(Collectors.toList());
             //.collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
 
-        System.out.println(categorias);
+        System.out.println(categorias);*/
+
+        /*Map<Fabricante, List<Produto>> produtosPorFabricante = produtos.stream()
+            .filter(Produto::temEstoque)
+            .collect(Collectors.groupingBy(Produto::getFabricante));*/
+        
+        /*Map<String, Long> produtosPorFabricante = produtos.stream()
+            .filter(Produto::temEstoque)
+            .collect(Collectors.groupingBy(
+                produto -> produto.getFabricante().nome(),
+                Collectors.counting()));
+        
+        System.out.println(produtosPorFabricante);*/
+
+        Map<String, Integer> estoquePorFabricante = produtos.stream()
+            .filter(Produto::temEstoque)
+            .collect(Collectors.groupingBy(
+                produto -> produto.getFabricante().nome(),
+                Collectors.summingInt(Produto::getQuantidade)));
+        
+        System.out.println(estoquePorFabricante);
+
         /*IntBinaryOperator operacaoSoma = (subTotal, valor) -> {
             System.out.println(subTotal + " + " + valor);
             return subTotal + valor;
