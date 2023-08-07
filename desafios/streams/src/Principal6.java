@@ -10,13 +10,13 @@ public class Principal6 {
         var servicoDeVenda = new ServicoDeVenda();
         List<Venda> vendas = servicoDeVenda.obterTodas();
 
-        vendas.stream()
+        List<String> clientes = vendas.stream()
             .filter(Venda::isFechada)
             .map(Venda::getCliente)
             .map(Cliente::nome)
             .distinct()
             .sorted()
-            .forEach(System.out::println);
+            .toList();
 
         /*List<String> clientes = new ArrayList<>();
 
@@ -28,8 +28,8 @@ public class Principal6 {
             }
         }
 
-        Collections.sort(clientes);
-        System.out.println(clientes);*/
+        Collections.sort(clientes);*/
+        System.out.println(clientes);
     }
 
 }

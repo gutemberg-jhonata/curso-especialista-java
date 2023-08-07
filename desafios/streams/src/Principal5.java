@@ -12,8 +12,8 @@ public class Principal5 {
         int quantidadeItensVendidos = vendas.stream()
             .filter(Venda::isFechada)
             .flatMap(venda -> venda.getItens().stream())
-            .map(Venda.Item::quantidade)
-            .reduce(0, Integer::sum);
+            .mapToInt(Venda.Item::quantidade)
+            .sum();
 
         /*int quantidadeItensVendidos = 0;
         for (Venda venda : vendas) {
