@@ -5,14 +5,17 @@ import com.algaworks.estoque.Produto;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalInt;
+import java.util.Random;
 import java.util.function.IntBinaryOperator;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import javax.management.RuntimeErrorException;
@@ -20,7 +23,41 @@ import javax.management.RuntimeErrorException;
 public class Principal {
 
     public static void main(String[] args) {
+        /*String[] nomes = { "Maria", "Sebastião", "João" };
+        Arrays.stream(nomes)
+            .map(String::toUpperCase)
+            .sorted()
+            .forEach(System.out::println);*/
+
+        /*Stream.iterate(new BigDecimal(1000), 
+            valor -> valor.compareTo(BigDecimal.ZERO) >= 0, 
+            valor -> valor.subtract(new BigDecimal(10)))
+            .forEach(System.out::println);
+
+        Stream<Integer> stream = Stream.empty();
+
+        Stream.of(1, 2, 3)
+            .forEach(System.out::println);
+
+        int total = IntStream.of(1, 2, 3)
+            .sum();
+        
+        Stream<Integer> stream1 = Stream.of(1, 2, 3);
+        Stream<Integer> stream2 = Stream.of(9, 8, 7);
+        Stream.concat(stream1, stream2);
+
+        IntStream.range(1, 10);
+        IntStream.rangeClosed(1, 10)
+            .skip(5);*/
+
+        Random random = new Random();
+        Stream.generate(() -> random.nextInt(9) + 1)
+            .distinct()
+            .limit(6)
+            .forEach(System.out::println);
+
         var cadastroProduto = new CadastroProduto();
+        
         List<Produto> produtos = cadastroProduto.obterTodos();
         //List<Produto> produtos = new ArrayList<>();
 
@@ -107,10 +144,10 @@ public class Principal {
         
         System.out.println(estoquePorFabricante);*/
 
-        Map<Boolean, List<Produto>> estoquePorFabricante = produtos.stream()
+        /*Map<Boolean, List<Produto>> estoquePorFabricante = produtos.stream()
             .collect(Collectors.partitioningBy(Produto::temEstoque));
         
-        System.out.println(estoquePorFabricante);
+        System.out.println(estoquePorFabricante);*/
 
         /*IntBinaryOperator operacaoSoma = (subTotal, valor) -> {
             System.out.println(subTotal + " + " + valor);
