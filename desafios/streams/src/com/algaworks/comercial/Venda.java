@@ -70,11 +70,15 @@ public class Venda {
     }
 
     private void calcularValorTotal() {
-        BigDecimal valorTotal = BigDecimal.ZERO;
+        this.valorTotal = itens.stream()
+            .map(Item::calcularValorTotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        /*BigDecimal valorTotal = BigDecimal.ZERO;
         for (Item item : itens) {
             valorTotal = valorTotal.add(item.calcularValorTotal());
         }
-        this.valorTotal = valorTotal;
+        this.valorTotal = valorTotal;*/
     }
 
     public enum Status {
