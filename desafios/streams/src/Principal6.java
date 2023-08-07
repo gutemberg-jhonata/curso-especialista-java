@@ -1,8 +1,7 @@
+import com.algaworks.comercial.Cliente;
 import com.algaworks.comercial.ServicoDeVenda;
 import com.algaworks.comercial.Venda;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Principal6 {
@@ -11,7 +10,15 @@ public class Principal6 {
         var servicoDeVenda = new ServicoDeVenda();
         List<Venda> vendas = servicoDeVenda.obterTodas();
 
-        List<String> clientes = new ArrayList<>();
+        vendas.stream()
+            .filter(Venda::isFechada)
+            .map(Venda::getCliente)
+            .map(Cliente::nome)
+            .distinct()
+            .sorted()
+            .forEach(System.out::println);
+
+        /*List<String> clientes = new ArrayList<>();
 
         for (Venda venda : vendas) {
             if (venda.isFechada()) {
@@ -22,7 +29,7 @@ public class Principal6 {
         }
 
         Collections.sort(clientes);
-        System.out.println(clientes);
+        System.out.println(clientes);*/
     }
 
 }
