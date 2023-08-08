@@ -1,3 +1,4 @@
+import com.algaworks.ciaaerea.Passageiro;
 import com.algaworks.ciaaerea.Reserva;
 import com.algaworks.ciaaerea.ServicoDeBagagem;
 import com.algaworks.ciaaerea.ServicoDeReserva;
@@ -15,7 +16,7 @@ public class Principal2 {
         servicoDeReserva.adicionar(new Reserva("74F877", voo, "Sebastião Coelho"));
 
         servicoDeBagagem.contratar("28A888", 2);
-        
+
         /*Reserva reserva = servicoDeReserva.buscar("28AXXX")
             .orElse(null);*/
         /*Reserva reserva = servicoDeReserva.buscar("28AXXX")
@@ -33,11 +34,16 @@ public class Principal2 {
         
         //servicoDeReserva.getReservas().forEach(System.out::println);
 
-        Reserva reserva = servicoDeReserva.buscar("28A888")
+        /*Reserva reserva = servicoDeReserva.buscar("28A888")
             .filter(r -> r.getQuantidadeBagagens() > 0)
+            .orElseThrow(RuntimeException::new);*/
+
+        Passageiro passageiro = servicoDeReserva.buscar("28A888")
+            .filter(r -> r.getQuantidadeBagagens() > 0)
+            .map(Reserva::getPassageiro)
             .orElseThrow(RuntimeException::new);
 
-        System.out.println(reserva);
+        System.out.println(passageiro);
     }
 
 }
