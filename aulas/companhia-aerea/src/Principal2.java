@@ -40,7 +40,7 @@ public class Principal2 {
 
         Passageiro passageiro = servicoDeReserva.buscar("28A888")
             .filter(r -> r.getQuantidadeBagagens() > 0)
-            .map(Reserva::getPassageiro)
+            .flatMap(Reserva::getPassageiro)
             .orElseThrow(RuntimeException::new);
 
         System.out.println(passageiro);
